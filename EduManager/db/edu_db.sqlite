@@ -1,0 +1,31 @@
+
+CREATE TABLE students (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL
+);
+
+
+CREATE TABLE courses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    capacity INTEGER DEFAULT 100
+);
+
+
+CREATE TABLE enrollments (
+    student_id INTEGER,
+    course_id INTEGER,
+    PRIMARY KEY (student_id, course_id),
+    FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (course_id) REFERENCES courses(id)
+);
+
+INSERT INTO courses (title, description, capacity) VALUES
+('Web Development', 'HTML, CSS, JavaScript Full Stack', 100),
+('Python Programming', 'Python Basics to Advanced', 100),
+('Java Programming', 'Core Java, OOP, JDBC', 100),
+('Cybersecurity', 'Security, Hacking, and Tools', 100),
+('AI/ML', 'Intro to Artificial Intelligence and ML', 100);
